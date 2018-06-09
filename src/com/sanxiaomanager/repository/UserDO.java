@@ -35,6 +35,36 @@ public class UserDO {
 	private String tel;
 	//用户身份
 	private int ch;
+	
+	public UserDO() {
+		super();
+		this.id = 0;
+		this.pwd = "default";
+		this.name = "default";
+		this.age = 0;
+		this.sex = "未知";
+		this.ac = "null";
+		this.ps = "null";
+		this.add = "null";
+		this.tel = "null";
+		this.ch = 0;
+	}
+	
+	public UserDO(int id, String pwd, String name, int age, String sex, String ac, String ps, String add, String tel,
+			int ch) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		this.ac = ac;
+		this.ps = ps;
+		this.add = add;
+		this.tel = tel;
+		this.ch = ch;
+	}
+	
 	public int getId() {
 		return id;
 	}

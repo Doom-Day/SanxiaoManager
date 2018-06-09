@@ -44,7 +44,4 @@ GRANT DBA TO SA
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
-INSERT INTO USERS VALUES(123,'123123','xiaoming',10,'\u7537','soft','wu','haiyuan','123123',0)
-INSERT INTO USERS VALUES(124,'123123','xiaoming',10,'\u7537','soft','wu','haiyuan','123123',0)
-INSERT INTO USERS VALUES(125,'123123','xiaoming',10,'\u7537','soft','wu','haiyuan','123123',0)
-INSERT INTO USERS VALUES(126,'123123','xiaoming',10,'\u7537','soft','wu','haiyuan','123123',0)
+INSERT INTO USERS VALUES(123,'123','xiaoming',10,'\u7537','software','dangyuan','haiyuan','1231223',0)
