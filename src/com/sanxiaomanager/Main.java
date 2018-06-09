@@ -12,11 +12,11 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext ac = new FileSystemXmlApplicationContext("classpath:applicationContext.xml");
 		UserDO user = new UserDO();
-		user.setId(123);
+		user.setId(124);
 		user.setPwd("123");
 		user.setName("xiaoming");
 		user.setAge(10);
-		user.setSex("Å®");
+		user.setSex("ÄÐ");
 		user.setAc("software");
 		user.setPs("dangyuan");
 		user.setAdd("haiyuan");
@@ -26,10 +26,10 @@ public class Main {
 //		System.out.println(user.toString());
 
 		UserRepositoryImpl r = new UserRepositoryImpl((JdbcTemplate)ac.getBean("jdbcTemplate"));
-		if(r.update(user))
-			System.out.println("Update success");
+		if(r.delete(123))
+			System.out.println("Delete success");
 		else
-			System.out.println("Update fail");
+			System.out.println("Delete fail");
 	}
 
 }

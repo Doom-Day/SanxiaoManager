@@ -3,7 +3,6 @@ package com.sanxiaomanager.repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -50,9 +49,11 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 	}
 
 	@Override
-	public boolean delete(UserDO user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int id) {
+		int temp = 0;
+		String sql = "delete from USERS where uid=?";
+		temp = jdbcTemplate.update(sql, id);
+		return temp>0?true:false;
 	}
 
 	public UserDO selectById(int id) {
@@ -60,7 +61,6 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
 	}
 
-	@Autowired
 	public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {
 		super();
 		this.jdbcTemplate = jdbcTemplate;

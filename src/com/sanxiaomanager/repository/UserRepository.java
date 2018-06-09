@@ -8,7 +8,7 @@ public interface UserRepository {
 	public boolean update(UserDO user);
 	
 	//根据ID删除用户信息
-	public boolean delete(UserDO user);
+	public boolean delete(int id);
 	
 	//根据ID查找用户
 	public UserDO selectById(int id);
