@@ -11,4 +11,4 @@ create table Users(
 	uch int
 );
 
-insert into USERS values(123, '123', 'xiaoming', 10, 'ÄÐ', 'software', 'dangyuan', 'haiyuan', '1231223', '0');
+insert into USERS values(123, '123', 'xiaoming', 10, 'ÄÐ', 'software', 'dangyuan', 'haiyuan', '1231223', 0);

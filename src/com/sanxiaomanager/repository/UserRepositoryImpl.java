@@ -13,8 +13,9 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 	
 	@Override 
 	public boolean insert(UserDO user) {
+		int temp = 0;
 		String sql = "insert into USERS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, new Object[] {
+		temp = jdbcTemplate.update(sql, new Object[] {
 				user.getId(),
 				user.getPwd(),
 				user.getName(),
@@ -26,13 +27,26 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 				user.getTel(),
 				user.getCh()
 		});
-		return false;
+		return temp>0?true:false;
 	}
 
 	@Override
 	public boolean update(UserDO user) {
-		// TODO Auto-generated method stub
-		return false;
+		int temp = 0;
+		String sql = "update USERS set upwd=?, uname=?, uage=?, usex=?, uac=?, ups=?, uadd=?, utel=?, uch=? where uid=?";
+		temp = jdbcTemplate.update(sql, new Object[] {
+				user.getPwd(),
+				user.getName(),
+				user.getAge(),
+				user.getSex(),
+				user.getAc(),
+				user.getPs(),
+				user.getAdd(),
+				user.getTel(),
+				user.getCh(),
+				user.getId()
+		});
+		return temp>0?true:false;
 	}
 
 	@Override

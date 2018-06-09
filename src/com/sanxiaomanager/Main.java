@@ -11,22 +11,25 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext ac = new FileSystemXmlApplicationContext("classpath:applicationContext.xml");
-//		UserDO user = new UserDO();
-//		user.setId(126);
-//		user.setPwd("123123");
-//		user.setName("xiaoming");
-//		user.setAge(10);
-//		user.setSex("ÄÐ");
-//		user.setAc("soft");
-//		user.setPs("wu");
-//		user.setAdd("haiyuan");
-//		user.setTel("123123");
-//		user.setCh(0);
-		UserDO user = new UserRepositoryImpl((JdbcTemplate)ac.getBean("jdbcTemplate")).selectById(123);
-		System.out.println(user.toString());
+		UserDO user = new UserDO();
+		user.setId(123);
+		user.setPwd("123");
+		user.setName("xiaoming");
+		user.setAge(10);
+		user.setSex("Å®");
+		user.setAc("software");
+		user.setPs("dangyuan");
+		user.setAdd("haiyuan");
+		user.setTel("123123");
+		user.setCh(0);
+//		UserDO user = new UserRepositoryImpl((JdbcTemplate)ac.getBean("jdbcTemplate")).selectById(123);
+//		System.out.println(user.toString());
 
-//		UserRepositoryImpl r = new UserRepositoryImpl((JdbcTemplate)ac.getBean("jdbcTemplate"));
-//		r.insert(user);
+		UserRepositoryImpl r = new UserRepositoryImpl((JdbcTemplate)ac.getBean("jdbcTemplate"));
+		if(r.update(user))
+			System.out.println("Update success");
+		else
+			System.out.println("Update fail");
 	}
 
 }
