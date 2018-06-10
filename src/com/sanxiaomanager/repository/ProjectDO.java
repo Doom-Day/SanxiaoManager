@@ -35,6 +35,132 @@ public class ProjectDO {
 	private String tea;
 	//项目指导老师联系电话
 	private String tel;
-	//项目
+	//项目属于第几届三小
 	private int session;
+	
+	public ProjectDO() {
+		super();
+		this.id = 0;
+		this.name = "null";
+		this.type = "null";
+		this.profile = "null";
+		this.plan = "null";
+		this.of = "null";
+		this.fee = 0;
+		this.state = 0;
+		this.tea = "null";
+		this.tel = "null";
+		this.session = 0;
+	}
+	
+	public ProjectDO(int id, String name, String type, String profile, String plan, String of, double fee, int state,
+			String tea, String tel, int session) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.profile = profile;
+		this.plan = plan;
+		this.of = of;
+		this.fee = fee;
+		this.state = state;
+		this.tea = tea;
+		this.tel = tel;
+		this.session = session;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getPlan() {
+		return plan;
+	}
+
+	public void setPlan(String plan) {
+		this.plan = plan;
+	}
+
+	public String getOf() {
+		return of;
+	}
+
+	public void setOf(String of) {
+		this.of = of;
+	}
+
+	public double getFee() {
+		return fee;
+	}
+
+	public void setFee(double fee) {
+		this.fee = fee;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public String getTea() {
+		return tea;
+	}
+
+	public void setTea(String tea) {
+		this.tea = tea;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public int getSession() {
+		return session;
+	}
+
+	public void setSession(int session) {
+		this.session = session;
+	}
+
+	@Override
+	public String toString() {
+		return "ProjectDO [id=" + id + ", name=" + name + ", type=" + type + ", profile=" + profile + ", plan=" + plan
+				+ ", of=" + of + ", fee=" + fee + ", state=" + state + ", tea=" + tea + ", tel=" + tel + ", session="
+				+ session + "]";
+	}
 }
