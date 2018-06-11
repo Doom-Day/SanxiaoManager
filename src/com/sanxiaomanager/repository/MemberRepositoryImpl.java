@@ -8,6 +8,14 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.sanxiaomanager.ACSingleton;
 
+/**
+ * 152061班第*组
+ * 三小管理系统——成员数据操作实现
+ * @author zjr
+ * date:2018-06-11
+ * 主要功能说明：
+ * 实现了需要对成员操作的方法
+ */
 public class MemberRepositoryImpl implements MemberRepository {
 	private JdbcTemplate jdbcTemplate;
 	@Override

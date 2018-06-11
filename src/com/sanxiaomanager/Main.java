@@ -10,6 +10,14 @@ import com.sanxiaomanager.repository.ProjectRepositoryImpl;
 import com.sanxiaomanager.repository.UserDO;
 import com.sanxiaomanager.repository.UserRepositoryImpl;
 
+/**
+ *152061班第*组
+ * 三小管理系统——测试模块
+ * @author zjr
+ * date:2018-06-11
+ * 主要功能说明：
+ * 用于测试各项功能
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -11,7 +11,7 @@ import com.sanxiaomanager.ACSingleton;
  * 152061班第*组
  * 三小管理系统——成员数据对象
  * @author zjr
- * date:2018-06-03
+ * date:2018-06-11
  * 主要功能说明：
  * 与数据库中Members表对应
  */
