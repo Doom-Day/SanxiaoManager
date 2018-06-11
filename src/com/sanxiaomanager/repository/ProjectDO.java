@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.sanxiaomanager.ACSingleton;
+import com.sanxiaomanager.RepositorySingleton;
 
 /**
  * 152061°àµÚ*×é
@@ -171,7 +172,7 @@ public class ProjectDO {
 	public UserDO getTrueUser() {
 		//Realization lazy load
 		if("null".equals(user.getName())) {
-			user = new UserRepositoryImpl((JdbcTemplate)ACSingleton.getAC().getBean("jdbcTemplate")).selectById(user.getId());
+			user = RepositorySingleton.getUserRepositoryImpl().selectById(user.getId());
 		}
 		return user;
 	}

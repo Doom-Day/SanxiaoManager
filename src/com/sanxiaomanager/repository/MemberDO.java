@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.sanxiaomanager.ACSingleton;
+import com.sanxiaomanager.RepositorySingleton;
 
 /**
  * 152061°àµÚ*×é
@@ -109,7 +110,7 @@ public class MemberDO {
 
 	public ProjectDO getTrueProject() {
 		if("null".equals(project.getName())) {
-			project = new ProjectRepositoryImpl((JdbcTemplate)ACSingleton.getAC().getBean("jdbcTemplate")).selectById(project.getId());
+			project = RepositorySingleton.getProjectRepositoryImpl().selectById(project.getId());
 		}
 		return project;
 	}

@@ -62,7 +62,7 @@ public class Main {
 		
 //		System.out.println(p.selectById(1000).toString());
 		
-		ProjectDO p = new ProjectRepositoryImpl((JdbcTemplate)ACSingleton.getAC().getBean("jdbcTemplate")).selectById(1000);
+		ProjectDO p = RepositorySingleton.getProjectRepositoryImpl().selectById(1000);
 		System.out.println(p.toString());
 	}
 

@@ -59,8 +59,8 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 	@Override
 	public MemberDO selectById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from MEMBERS where mid=?";
+		return jdbcTemplate.queryForObject(sql, new MemberRowMapper(), id);
 	}
 
 	public MemberRepositoryImpl(JdbcTemplate jdbcTemplate) {
