@@ -2,7 +2,7 @@ package com.sanxiaomanager.repository;
 
 public interface ProjectRepository {
 	//添加项目
-	public boolean insert(ProjectDO project, int uid);
+	public boolean insert(ProjectDO project);
 	
 	//更新项目
 	public boolean update(ProjectDO project);

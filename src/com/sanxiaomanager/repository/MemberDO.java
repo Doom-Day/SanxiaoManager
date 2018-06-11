@@ -2,7 +2,10 @@ package com.sanxiaomanager.repository;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import com.sanxiaomanager.ACSingleton;
 
 /**
  * 152061班第*组
@@ -27,6 +30,8 @@ public class MemberDO {
 	private String ps;
 	//成员学院
 	private String ac;
+	//成员所属项目
+	private ProjectDO project;
 	
 	public MemberDO() {
 		super();
@@ -36,6 +41,18 @@ public class MemberDO {
 		this.sex = "男";
 		this.ps = "";
 		this.ac = "";
+		this.project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");
+	}
+
+	public MemberDO(int id, String name, int age, String sex, String ps, String ac, ProjectDO project) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		this.ps = ps;
+		this.ac = ac;
+		this.project = project;
 	}
 
 	public int getId() {
@@ -85,10 +102,25 @@ public class MemberDO {
 	public void setAc(String ac) {
 		this.ac = ac;
 	}
+	
+	public ProjectDO getProject() {
+		return project;
+	}
+
+	public ProjectDO getTrueProject() {
+		if("null".equals(project.getName())) {
+			project = new ProjectRepositoryImpl((JdbcTemplate)ACSingleton.getAC().getBean("jdbcTemplate")).selectById(project.getId());
+		}
+		return project;
+	}
+
+	public void setProject(ProjectDO project) {
+		this.project = project;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberDO [id=" + id + ", name=" + name + ", age=" + age + ", sex=" + sex + ", ps=" + ps + ", ac=" + ac
-				+ "]";
+				+ ", projectID=" + project.getId() + "]";
 	}
 }

@@ -39,10 +39,10 @@ public class UserDO {
 	public UserDO() {
 		super();
 		this.id = 0;
-		this.pwd = "default";
-		this.name = "default";
+		this.pwd = "null";
+		this.name = "null";
 		this.age = 0;
-		this.sex = "δ֪";
+		this.sex = "null";
 		this.ac = "null";
 		this.ps = "null";
 		this.add = "null";

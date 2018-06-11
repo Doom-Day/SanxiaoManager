@@ -2,7 +2,10 @@ package com.sanxiaomanager.repository;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import com.sanxiaomanager.ACSingleton;
 
 /**
  * 152061班第*组
@@ -37,6 +40,8 @@ public class ProjectDO {
 	private String tel;
 	//项目属于第几届三小
 	private int session;
+	//项目负责人
+	private UserDO user;
 	
 	public ProjectDO() {
 		super();
@@ -51,10 +56,11 @@ public class ProjectDO {
 		this.tea = "null";
 		this.tel = "null";
 		this.session = 0;
+		this.user = (UserDO)ACSingleton.getAC().getBean("userDO");
 	}
 	
 	public ProjectDO(int id, String name, String type, String profile, String plan, String of, double fee, int state,
-			String tea, String tel, int session) {
+			String tea, String tel, int session, UserDO user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -67,6 +73,7 @@ public class ProjectDO {
 		this.tea = tea;
 		this.tel = tel;
 		this.session = session;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -157,10 +164,26 @@ public class ProjectDO {
 		this.session = session;
 	}
 
+	public UserDO getUser() {
+		return user;
+	}
+
+	public UserDO getTrueUser() {
+		//Realization lazy load
+		if("null".equals(user.getName())) {
+			user = new UserRepositoryImpl((JdbcTemplate)ACSingleton.getAC().getBean("jdbcTemplate")).selectById(user.getId());
+		}
+		return user;
+	}
+
+	public void setUser(UserDO user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "ProjectDO [id=" + id + ", name=" + name + ", type=" + type + ", profile=" + profile + ", plan=" + plan
 				+ ", of=" + of + ", fee=" + fee + ", state=" + state + ", tea=" + tea + ", tel=" + tel + ", session="
-				+ session + "]";
+				+ session + ", userID=" + user.getId() + "]";
 	}
 }

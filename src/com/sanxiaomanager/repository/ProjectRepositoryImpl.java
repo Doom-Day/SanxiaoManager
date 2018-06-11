@@ -6,16 +6,18 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.sanxiaomanager.ACSingleton;
+
 public class ProjectRepositoryImpl implements ProjectRepository {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public boolean insert(ProjectDO project, int uid) {
+	public boolean insert(ProjectDO project) {
 		int temp = 0;
 		String sql = "insert into PROJECTS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		temp = jdbcTemplate.update(sql, new Object[] {
 				project.getId(),
-				uid,
+				project.getUser().getId(),
 				project.getName(),
 				project.getType(),
 				project.getProfile(),
@@ -71,18 +73,23 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 }
 
 final class ProjectRowMapper implements RowMapper<ProjectDO>{
+	
 	public ProjectDO mapRow(ResultSet rs, int rowNum) throws SQLException{
-		return new ProjectDO(
-				rs.getInt("pid"),
-				rs.getString("pname"),
-				rs.getString("ptype"),
-				rs.getString("pprofile"),
-				rs.getString("pplan"),
-				rs.getString("pof"),
-				rs.getDouble("pfee"),
-				rs.getInt("pstate"),
-				rs.getString("ptea"),
-				rs.getString("ptel"),
-				rs.getInt("psession"));
+		ProjectDO project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");
+		
+		project.setId(rs.getInt("pid"));
+		project.setName(rs.getString("pname"));
+		project.setType(rs.getString("ptype"));
+		project.setProfile(rs.getString("pprofile"));
+		project.setPlan(rs.getString("pplan"));
+		project.setOf(rs.getString("pof"));
+		project.setFee(rs.getDouble("pfee"));
+		project.setState(rs.getInt("pstate"));
+		project.setTea(rs.getString("ptea"));
+		project.setTel(rs.getString("ptel"));
+		project.setSession(rs.getInt("psession"));
+		project.getUser().setId(rs.getInt("uid"));
+		
+		return project;
 	}
 }
