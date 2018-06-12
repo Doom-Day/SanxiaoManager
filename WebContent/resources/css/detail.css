@@ -1,0 +1,115 @@
+#text{
+	min-height: 560px;	
+	margin: 0px auto;	
+	width: 700px;
+	position: relative;	
+}
+#text h1{
+	font-size: 48px;
+	color: #808080;
+	padding: 2px 0 10px 0;
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+#text label+p{
+	position: relative;
+	left: 30px;
+}
+#text p{
+	margin-bottom:15px;
+}
+#text p:first-child{
+	margin: 0px;
+}
+#text label{
+	color:#808080;
+	position: relative;
+}
+#text p.button input{
+	width: 47%;
+	cursor: pointer;
+	background: #c0c0c0;
+	padding: 8px 5px;
+	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+	color: #fff;
+	font-size: 18px;
+	border: 1px solid rgb(99, 99, 99);	
+	margin-bottom: 10px;	
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+}
+#text p.button input:hover{
+	background: #ff0000;
+}
+p.text.button{
+	text-align: right;
+	margin: 5px 0;
+}
+
+::-webkit-input-placeholder{ 
+	color: rgb(190, 188, 188); 
+	font-style: italic;
+}
+input:-moz-placeholder{ 
+	color: rgb(190, 188, 188);
+	font-style: italic;
+} 
+input {
+  outline: none;
+}
+
+#text input{
+	width: 92%;
+	margin-top: 4px;
+	padding: 10px 5px 10px 5px;	
+	border: 1px solid rgb(178, 178, 178);
+	box-sizing : content-box;
+	border-radius: 3px;
+	box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	transition: all 0.2s linear;
+}
+
+#text input:active,
+#text input:focus,{
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	background: rgba(238, 236, 240, 0.2);	
+	box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+#text t{
+    font-size: 22px;
+    position: relative;
+    left: 20px;
+}
+#text t#synopsis{
+	font-size: 16px;
+}
+#text p#viewname{
+	position: relative;
+    left: 20px;
+}
+select{
+    background: #c0c0c0 0px 0px;
+    color: #000000;
+    font-size: 18px;
+    border: #ffffff 1px solid;
+    padding: 5px;
+   	position: relative;
+    left: 10px;
+}
+body{
+	margin:1em 10%;
+	background-image:url(../images/background.png);
+	background-attachment:fixed;
+	background-position:top left;
+	background-repeat:repeat;
+	max-width:auto;
+}
+
+p.text.button {
+    display: inline;
+}
+#text input#del {
+    width: 97%;
+}

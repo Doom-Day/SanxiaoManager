@@ -1,14 +1,8 @@
 package com.sanxiaomanager;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.sanxiaomanager.repository.ProjectDO;
-import com.sanxiaomanager.repository.ProjectRepository;
-import com.sanxiaomanager.repository.ProjectRepositoryImpl;
 import com.sanxiaomanager.repository.UserDO;
-import com.sanxiaomanager.repository.UserRepositoryImpl;
 
 /**
  *152061°àµÚ*×é
@@ -62,8 +56,8 @@ public class Main {
 		
 //		System.out.println(p.selectById(1000).toString());
 		
-		ProjectDO p = RepositorySingleton.getProjectRepositoryImpl().selectById(1000);
-		System.out.println(p.toString());
+		UserDO u = RepositorySingleton.getUserRepositoryImpl().selectById(12345678);
+		System.out.println(u.toString());
 	}
 
 }

@@ -2,7 +2,6 @@ package com.sanxiaomanager.repository;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.sanxiaomanager.ACSingleton;
@@ -165,11 +164,15 @@ public class ProjectDO {
 		this.session = session;
 	}
 
-	public UserDO getUser() {
-		return user;
+	public int getUID() {
+		return user.getId();
+	}
+	
+	public void setUID(int uid) {
+		user.setId(uid);
 	}
 
-	public UserDO getTrueUser() {
+	public UserDO getUser() {
 		//Realization lazy load
 		if("null".equals(user.getName())) {
 			user = RepositorySingleton.getUserRepositoryImpl().selectById(user.getId());

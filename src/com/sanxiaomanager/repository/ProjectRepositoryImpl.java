@@ -25,7 +25,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		String sql = "insert into PROJECTS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		temp = jdbcTemplate.update(sql, new Object[] {
 				project.getId(),
-				project.getUser().getId(),
+				project.getUID(),
 				project.getName(),
 				project.getType(),
 				project.getProfile(),
@@ -96,7 +96,7 @@ final class ProjectRowMapper implements RowMapper<ProjectDO>{
 		project.setTea(rs.getString("ptea"));
 		project.setTel(rs.getString("ptel"));
 		project.setSession(rs.getInt("psession"));
-		project.getUser().setId(rs.getInt("uid"));
+		project.setUID(rs.getInt("uid"));
 		
 		return project;
 	}

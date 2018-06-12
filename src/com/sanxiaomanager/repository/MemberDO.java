@@ -2,7 +2,6 @@ package com.sanxiaomanager.repository;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.sanxiaomanager.ACSingleton;
@@ -104,11 +103,15 @@ public class MemberDO {
 		this.ac = ac;
 	}
 	
-	public ProjectDO getProject() {
-		return project;
+	public int getPID() {
+		return project.getId();
+	}
+	
+	public void setPID(int pid) {
+		project.setId(pid);
 	}
 
-	public ProjectDO getTrueProject() {
+	public ProjectDO getProject() {
 		if("null".equals(project.getName())) {
 			project = RepositorySingleton.getProjectRepositoryImpl().selectById(project.getId());
 		}

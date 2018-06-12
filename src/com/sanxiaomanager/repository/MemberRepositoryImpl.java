@@ -24,7 +24,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		String sql = "insert into MEMBERS values(?, ?, ?, ?, ?, ?, ?)";
 		temp = jdbcTemplate.update(sql, new Object[] {
 				member.getId(),
-				member.getProject().getId(),
+				member.getPID(),
 				member.getName(),
 				member.getAge(),
 				member.getSex(),
@@ -39,7 +39,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		int temp = 0;
 		String sql = "update MEMBERS set pid=?, mname=?, mage=?, msex=?, mps=?, mac=? where mid=?";
 		temp = jdbcTemplate.update(sql, new Object[] {
-				member.getProject().getId(),
+				member.getPID(),
 				member.getName(),
 				member.getAge(),
 				member.getSex(),
@@ -80,7 +80,7 @@ final class MemberRowMapper implements RowMapper<MemberDO>{
 		member.setSex(rs.getString("msex"));
 		member.setPs(rs.getString("mps"));
 		member.setAc(rs.getString("mac"));
-		member.getProject().setId(rs.getInt("pid"));;
+		member.setPID(rs.getInt("pid"));;
 		
 		return member;
 	}

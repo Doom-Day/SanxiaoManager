@@ -46,4 +46,5 @@ SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
 INSERT INTO USERS VALUES(123,'123','xiaoming',10,'\u00c4\u00d0','software','dangyuan','haiyuan','1231223',0)
+INSERT INTO USERS VALUES(12345678,'123','Tester',10,'\u7537','software','dangyuan','haiyuan','1231223',0)
 INSERT INTO PROJECTS VALUES(1000,123,'matong','important','this is a ma tong','jiayou','food',1500,1,'88888888','null',0)

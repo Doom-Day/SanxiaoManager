@@ -2,8 +2,6 @@ package com.sanxiaomanager.service;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sanxiaomanager.ACSingleton;
@@ -12,20 +10,25 @@ import com.sanxiaomanager.repository.UserDO;
 @Controller
 public class LoginController {
 	@RequestMapping("/")
-	public String login(String account,String password,Model model) {
-		UserDO user= (UserDO)ACSingleton.getAC().getBean("userDO");
-		user.setId(Integer.valueOf(account));
-		user.setPwd(password);
-		model.addAttribute(user);
+	public String welcome() {
 		return "login";
 	}
 	
-	@RequestMapping("/checklogin")
-	public String login(@Validated UserDO user, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
+	@RequestMapping("/log")
+	public String login(String uid, String upwd, Model model) {
+		System.out.println(uid + " " + upwd);
+		
+		UserDO user = LoginBO.login(uid, upwd);
+//		model.addAttribute(user);
+		if(user == null) {
+			//User not exist
 			return "login";
+		}if(user.getCh() == 0) {
+			//User is student = 0
+			return "student";
 		}else {
-			return "welcome";
+			//User is teacher = 1
+			return "teacher";
 		}
 	}
 }
