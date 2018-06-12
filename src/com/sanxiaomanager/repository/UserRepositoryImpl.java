@@ -3,6 +3,7 @@ package com.sanxiaomanager.repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -66,7 +67,15 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 
 	public UserDO selectById(int id) {
 		String sql = "select * from USERS where uid=?";
-		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+		UserDO user = null;
+		
+		try {
+			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+		}catch(DataAccessException e) {
+			user = null;
+		}
+		
+		return user;
 	}
 
 	public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {

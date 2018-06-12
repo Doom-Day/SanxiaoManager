@@ -59,6 +59,10 @@
 						<label for="unamesignup">真实姓名</label>
 						<input type="text" id="unamesignup" name="unamesignup" required="required"/>
 					</p>
+					<p>
+						<label for="utelsignup">年龄</label>
+						<input type="text" id="uagesignup" name="uagesignup" pattern="^\d{1}$|^\d{2}$" required="required"/>
+					</p>
 					<p class="choose">
 						<label for="usexsignup">请选择性别</label>
 						<input type="radio" id="usex0" name="usex" value="0" checked>

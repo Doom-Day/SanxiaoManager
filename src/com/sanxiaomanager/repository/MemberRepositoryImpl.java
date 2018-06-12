@@ -3,6 +3,7 @@ package com.sanxiaomanager.repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -60,7 +61,15 @@ public class MemberRepositoryImpl implements MemberRepository {
 	@Override
 	public MemberDO selectById(int id) {
 		String sql = "select * from MEMBERS where mid=?";
-		return jdbcTemplate.queryForObject(sql, new MemberRowMapper(), id);
+		MemberDO member = null;
+		
+		try {
+			member = jdbcTemplate.queryForObject(sql, new MemberRowMapper(), id);;
+		}catch(DataAccessException e) {
+			member = null;
+		}
+		
+		return member;
 	}
 
 	public MemberRepositoryImpl(JdbcTemplate jdbcTemplate) {

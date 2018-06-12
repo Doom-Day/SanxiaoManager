@@ -32,7 +32,7 @@ public class ProjectDO {
 	private String of;
 	//项目预算
 	private double fee;
-	//项目状态
+	//项目状态		0：未审核		1：进行中		2：已结题
 	private int state;
 	//项目指导老师
 	private String tea;

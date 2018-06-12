@@ -3,6 +3,7 @@ package com.sanxiaomanager.repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -71,7 +72,15 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	@Override
 	public ProjectDO selectById(int id) {
 		String sql = "select * from PROJECTS where pid=?";
-		return jdbcTemplate.queryForObject(sql, new ProjectRowMapper(), id);
+		ProjectDO project = null;
+		
+		try {
+			project =  jdbcTemplate.queryForObject(sql, new ProjectRowMapper(), id);
+		}catch(DataAccessException e) {
+			project = null;
+		}
+		
+		return project;
 	}
 
 	public ProjectRepositoryImpl(JdbcTemplate jdbcTemplate) {

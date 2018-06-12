@@ -1,6 +1,8 @@
 package com.sanxiaomanager;
 
 
+import org.springframework.dao.DataAccessException;
+
 import com.sanxiaomanager.repository.ProjectDO;
 import com.sanxiaomanager.repository.UserDO;
 
@@ -55,9 +57,17 @@ public class Main {
 //			System.out.println("Update fail");
 		
 //		System.out.println(p.selectById(1000).toString());
-		
-		UserDO u = RepositorySingleton.getUserRepositoryImpl().selectById(12345678);
-		System.out.println(u.toString());
+		UserDO u = null;
+		try {
+			u = RepositorySingleton.getUserRepositoryImpl().selectById(125678);
+		}catch(DataAccessException ex) {
+			u = null;
+		}
+		if(u == null) {
+			System.out.println("Yes!");
+		}else {
+			System.out.println(u.toString());
+		}
 	}
 
 }
