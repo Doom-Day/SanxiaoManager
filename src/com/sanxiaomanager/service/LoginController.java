@@ -1,21 +1,27 @@
 package com.sanxiaomanager.service;
 
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sanxiaomanager.RepositorySingleton;
 import com.sanxiaomanager.repository.UserDO;
 
+//@SessionAttributes(value={"user"},types={UserDO.class})
 @Controller
 public class LoginController {
 	@RequestMapping("/")
 	public String welcome() {
+		RepositorySingleton.setUser(null);
 		return "login";
 	}
 	
 	@RequestMapping("/log")
-	public ModelAndView login(String uid, String upwd, Model model) {
+	public ModelAndView login(String uid, String upwd) {
 //		System.out.println(uid + " " + upwd);
 		
 		ModelAndView mav = new ModelAndView();
@@ -24,17 +30,21 @@ public class LoginController {
 		
 		if(user == null) {
 			//User not exist
-			mav.addObject("message", "ÕËºÅ»òÃÜÂë´íÎó");
+			mav.addObject("message", "ÓÃ»§²»´æÔÚ£¬Çë×¢²á");
 			mav.setViewName("login");
 			return mav;
 		}
 		
-		model.addAttribute(user);
+		RepositorySingleton.setUser(user);
+		
+		mav.addObject("user", user);
 		if(user.getCh() == 0) {
 			//User is student = 0
+			mav.addObject("projectList", RepositorySingleton.getUserRepositoryImpl().getMyProjects(user.getId()));
 			mav.setViewName("student");
 		}else {
 			//User is teacher = 1
+			mav.addObject("projectList", RepositorySingleton.getUserRepositoryImpl().getAllProjects());
 			mav.setViewName("teacher");
 		}
 		
@@ -62,9 +72,9 @@ public class LoginController {
 		if("success".equals(result)) {
 			mav.addObject("message", "");
 		}else if("fail".equals(result)){
-			mav.addObject("message", "×¢²áÊ§°Ü£¡");
+			mav.addObject("message", "×¢²áÊ§°Ü");
 		}else {
-			mav.addObject("message", "ÕËºÅÒÑ±»×¢²á£¬ÇëÖ±½ÓµÇÂ¼");
+			mav.addObject("message", "×¢²á³É¹¦");
 		}
 		
 		return mav;

@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(function(){
 	  $(".sign_bt").click(function(){
-	    if($(".upwdsignup")!=$(".upwdsignup_confirm")){
+	    if($("#upwdsignup").val()!=$("#upwdsignup_confirm").val()){
 	    	alert("二次密码不一致");
-	    	return true;
+	    	return false;
 	    }
 	    else{
 	    	return true;

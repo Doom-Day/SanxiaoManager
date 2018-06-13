@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<title>教师主页</title>
@@ -10,9 +11,9 @@
 	<top>
 		<h2 class="dilate">三小信息管理系统</h2>
 	    <div class="logout">
-	    	<a class="logout_a" href="login.jsp">注销</a>
+	    	<a class="logout_a" href="<c:url value="/" />">注销</a>
 	    </div>
-	    <t><a href="">蔡柯</a> 老师，你好！</t>
+	    <t><a href="<c:url value="/information" />">${user.name}</a> 老师，你好！</t>
 	</top>
 	<br><br>
 	<article>
@@ -31,26 +32,47 @@
 	                <th>操作</th>
 	           	</tr>
 	        </thead>  
-	        <tbody>  
-	            <tr>
-	                <td>1</td>
-	                <td>三小管理信息系统</td>  
-	                <td>苏镇宇</td>
-	                <td>15206110</td>
-	                <td>15896679232</td>
-	                <td>蔡柯</td>
-	                <td>软件</td>
-	                <td>1000</td>
-	                <td>申请中</td>
-	                <td><a href="">详情</a></td>
-	            </tr>
+	        <tbody>
+				<c:choose>
+					<c:when test="${empty projectList}">
+						<tr>
+			            	<td colspan="10">无人申报</td>
+			            </tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="result" items="${projectList}">
+				            <tr>
+				                <td>${result.pid}</td>
+				                <td>${result.pname}</td>  
+				                <td>${result.uname}</td>
+				                <td>${result.uid}</td>
+				                <td>${result.utel}</td>
+				                <td>${result.ptea}</td>
+				                <td>${result.pof}</td>
+				                <td>${result.pfee}</td>
+				                <td>
+									<c:choose>
+				                		<c:when test="${result.pstate=='0'}">
+				                			未审核
+				                		</c:when>
+				                		<c:when test="${result.pstate=='1'}">
+				                			进行中
+				                		</c:when>
+										<c:when test="${result.pstate=='2'}">
+				                			已结题
+				                		</c:when>
+				                		<c:otherwise>
+				                			状态异常
+				                		</c:otherwise>
+				                	</c:choose>
+								</td>
+				                <td><a href="<c:url value="/project_detail?pid=${result.pid}" />">详情</a></td>
+				            </tr>
+				         </c:forEach>
+					</c:otherwise>
+	            </c:choose>
 	        </tbody>
 	    </table>
-	    <div id="addbutton">
-			<p class="add button">
-				<input type="button" onclick='' value="申请三小项目">
-			</p>
-		</div>
 	</article>
 </body>
 </html>

@@ -24,7 +24,7 @@ create table Projects(
 	pfee decimal,
 	pstate int,
 	ptea varchar(40),
-	ptel varchar(20),
+	pttel varchar(20),
 	psession int
 );
 
@@ -32,4 +32,6 @@ alter table Projects
 add constraint FK_UID
 foreign key (uid) references Users(uid);
 
-insert into PROJECTS values(1000, 123, 'chesuo', 'normal', 'no profile', 'no plan', 'concrete', 1000, 0, 'laowang', '123123', 0);
+insert into PROJECTS values(1000, 15206136, '三小管理系统', '一般项目', 'm没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
+insert into PROJECTS values(1001, 15206136, '三小管理系统', '一般项目', 'm没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
+

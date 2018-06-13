@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<title>申请项目</title>
@@ -8,7 +9,7 @@
 </head>
 <body>
 	<div id="text">
-		<form action="addroute" onsubmit="" method="post">
+		<form action="projectAdd" method="post">
 			<h1>申请</h1>
 			<p>
 				<label>项目名称</label>
@@ -71,24 +72,24 @@
 				           	</tr>
 				        </thead>
 				        <tbody>
-				        <%for(int i=1;i<6;i++){%>
+				        <c:forEach var="i" begin="1" end="5">
 				            <tr>
-				            	<td><p><%=i%></p></td>
-				                <td><p id="mid_<%=i%>" contenteditable="true"></p></td>
-				                <td><p id="mname_<%=i%>" contenteditable="true"></p></td>  
-				                <td><p id="mage_<%=i%>" contenteditable="true"></p></td>
-				                <td><p id="msex_<%=i%>" contenteditable="true"></p></td>
-				                <td><p id="mps_<%=i%>" contenteditable="true"></p></td>
-				                <td><p id="mac_<%=i%>" contenteditable="true"></p></td>
+				            	<td><p>${i}</p></td>
+				                <td><p id="mid_${i}" contenteditable="true"></p></td>
+				                <td><p id="mname_${i}" contenteditable="true"></p></td>  
+				                <td><p id="mage_${i}" contenteditable="true"></p></td>
+				                <td><p id="msex_${i}" contenteditable="true"></p></td>
+				                <td><p id="mps_${i}" contenteditable="true"></p></td>
+				                <td><p id="mac_${i}" contenteditable="true"></p></td>
 				            </tr>
-				        <%} %>
+				        </c:forEach>
 				        </tbody>
         			</table>
 				</p>
 			</p>
 			<p class="text button">
 				<input type="submit" value="确认申请">
-				<input type="button" onclick='' value="返回">
+				<input type="button" onclick="javascript:history.back(-1);" value="返回">
 			</p>
 		</form>
 	</div>

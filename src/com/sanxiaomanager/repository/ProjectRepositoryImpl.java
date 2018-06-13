@@ -35,7 +35,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 				project.getFee(),
 				project.getState(),
 				project.getTea(),
-				project.getTel(),
+				project.getTtel(),
 				project.getSession()
 		});
 		return temp>0?true:false;
@@ -54,7 +54,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 				project.getFee(),
 				project.getState(),
 				project.getTea(),
-				project.getTel(),
+				project.getTtel(),
 				project.getSession(),
 				project.getId()
 		});
@@ -103,7 +103,7 @@ final class ProjectRowMapper implements RowMapper<ProjectDO>{
 		project.setFee(rs.getDouble("pfee"));
 		project.setState(rs.getInt("pstate"));
 		project.setTea(rs.getString("ptea"));
-		project.setTel(rs.getString("ptel"));
+		project.setTtel(rs.getString("ptel"));
 		project.setSession(rs.getInt("psession"));
 		project.setUID(rs.getInt("uid"));
 		

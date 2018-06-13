@@ -37,7 +37,7 @@ public class ProjectDO {
 	//项目指导老师
 	private String tea;
 	//项目指导老师联系电话
-	private String tel;
+	private String ttel;
 	//项目属于第几届三小
 	private int session;
 	//项目负责人
@@ -54,7 +54,7 @@ public class ProjectDO {
 		this.fee = 0;
 		this.state = 0;
 		this.tea = "null";
-		this.tel = "null";
+		this.ttel = "null";
 		this.session = 0;
 		this.user = (UserDO)ACSingleton.getAC().getBean("userDO");
 	}
@@ -71,7 +71,7 @@ public class ProjectDO {
 		this.fee = fee;
 		this.state = state;
 		this.tea = tea;
-		this.tel = tel;
+		this.ttel = tel;
 		this.session = session;
 		this.user = user;
 	}
@@ -148,12 +148,12 @@ public class ProjectDO {
 		this.tea = tea;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getTtel() {
+		return ttel;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setTtel(String tel) {
+		this.ttel = tel;
 	}
 
 	public int getSession() {
@@ -187,7 +187,7 @@ public class ProjectDO {
 	@Override
 	public String toString() {
 		return "ProjectDO [id=" + id + ", name=" + name + ", type=" + type + ", profile=" + profile + ", plan=" + plan
-				+ ", of=" + of + ", fee=" + fee + ", state=" + state + ", tea=" + tea + ", tel=" + tel + ", session="
+				+ ", of=" + of + ", fee=" + fee + ", state=" + state + ", tea=" + tea + ", ttel=" + ttel + ", session="
 				+ session + ", userID=" + user.getId() + "]";
 	}
 }

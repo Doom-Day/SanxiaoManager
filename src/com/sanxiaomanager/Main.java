@@ -1,7 +1,15 @@
 package com.sanxiaomanager;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.sanxiaomanager.repository.ProjectDO;
 import com.sanxiaomanager.repository.UserDO;
@@ -16,6 +24,7 @@ import com.sanxiaomanager.repository.UserDO;
  */
 public class Main {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 //		UserDO user = (UserDO)ac.getBean("userDO")
 //		user.setId(124);
@@ -57,16 +66,31 @@ public class Main {
 //			System.out.println("Update fail");
 		
 //		System.out.println(p.selectById(1000).toString());
-		UserDO u = null;
-		try {
-			u = RepositorySingleton.getUserRepositoryImpl().selectById(125678);
-		}catch(DataAccessException ex) {
-			u = null;
-		}
-		if(u == null) {
-			System.out.println("Yes!");
-		}else {
-			System.out.println(u.toString());
+		
+//		UserDO u = null;
+//		try {
+//			u = RepositorySingleton.getUserRepositoryImpl().selectById(125678);
+//		}catch(DataAccessException ex) {
+//			u = null;
+//		}
+//		if(u == null) {
+//			System.out.println("Yes!");
+//		}else {
+//			System.out.println(u.toString());
+//		}
+		
+		String sql = "select * from PROJECTS where uid=?";
+		List<ProjectDO> list = (List<ProjectDO>)RepositorySingleton.getJdbcTemplate().query(sql, new Object[] {123},
+				new RowMapper() {
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
+				ProjectDO project = new ProjectDO();
+				project.setName(rs.getString("pname"));
+				return project;  
+				}  
+		});
+		
+		for(ProjectDO p : list) {
+			System.out.println(p.toString());
 		}
 	}
 
