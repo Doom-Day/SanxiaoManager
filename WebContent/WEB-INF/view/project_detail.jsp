@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="text">
-		<form action="changePstate" method="post">
+		<form action="changePstate?pid=${project.pid}" method="post">
 		<h1>第${project.psession}届三小项目详情</h1>
 		<p>
 			<label>项目名称</label>
@@ -95,10 +95,10 @@
 		</p>
 		<p class="text button">
 		<c:choose>
-			<c:when test="${project.uch=='1'}">
+			<c:when test="${user.ch=='0'}">
 				<input type="button" onclick='location.href=("project_revise.jsp")' value="修改">
 			</c:when>
-			<c:when test="${project.uch=='0'}">
+			<c:when test="${user.ch=='1'}">
 				<c:choose>
 					<c:when test="${project.pstate=='0'}">
 						<input type="submit" value="同意立项">

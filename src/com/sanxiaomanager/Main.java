@@ -79,19 +79,21 @@ public class Main {
 //			System.out.println(u.toString());
 //		}
 		
-		String sql = "select * from PROJECTS where uid=?";
-		List<ProjectDO> list = (List<ProjectDO>)RepositorySingleton.getJdbcTemplate().query(sql, new Object[] {123},
-				new RowMapper() {
-			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
-				ProjectDO project = new ProjectDO();
-				project.setName(rs.getString("pname"));
-				return project;  
-				}  
-		});
-		
-		for(ProjectDO p : list) {
-			System.out.println(p.toString());
-		}
+//		String sql = "select * from PROJECTS where uid=?";
+//		List<ProjectDO> list = (List<ProjectDO>)RepositorySingleton.getJdbcTemplate().query(sql, new Object[] {123},
+//				new RowMapper() {
+//			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
+//				ProjectDO project = new ProjectDO();
+//				project.setName(rs.getString("pname"));
+//				return project;  
+//				}  
+//		});
+//		
+//		for(ProjectDO p : list) {
+//			System.out.println(p.toString());
+//		}
+		System.out.println(RepositorySingleton.getUserRepositoryImpl().selectById(15206136).toString());
+		System.out.println(RepositorySingleton.getProjectRepositoryImpl().selectById(1000).toString());
 	}
 
 }

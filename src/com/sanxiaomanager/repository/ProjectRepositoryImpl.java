@@ -48,7 +48,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	@Override
 	public boolean update(ProjectDO project) {
 		int temp = 0;
-		String sql = "update PROJECTS set pname=?, ptype=?, pprofile=?, pplan=?, pof=?, pfee=?, pstate=?, ptea=?, ptel=?, psession=? where pid=?";
+		String sql = "update PROJECTS set pname=?, ptype=?, pprofile=?, pplan=?, pof=?, pfee=?, pstate=?, ptea=?, pttel=?, psession=? where pid=?";
 		temp = jdbcTemplate.update(sql, new Object[] {
 				project.getName(),
 				project.getType(),
@@ -79,7 +79,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		ProjectDO project = null;
 		
 		try {
-			project =  jdbcTemplate.queryForObject(sql, new ProjectRowMapper(), id);
+			project = jdbcTemplate.queryForObject(sql, new ProjectRowMapper(), id);
 		}catch(DataAccessException e) {
 			project = null;
 		}
@@ -95,6 +95,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 				new RowMapper<Map<String, Object>>() {
 			public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Map<String, Object> rsMap = new LinkedHashMap<String, Object>();
+					rsMap.put("pid", rs.getInt("pid"));
 					rsMap.put("pname", rs.getString("pname"));
 					rsMap.put("uname", rs.getString("uname"));
 					rsMap.put("ups", rs.getString("ups"));
@@ -109,6 +110,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 					rsMap.put("pfee", rs.getDouble("pfee"));
 					rsMap.put("ptype", rs.getString("ptype"));
 					rsMap.put("pof", rs.getString("pof"));
+					rsMap.put("pstate", rs.getInt("pstate"));
+					rsMap.put("psession", rs.getInt("psession"));
 					
 				return rsMap;
 			}
@@ -160,7 +163,7 @@ final class ProjectRowMapper implements RowMapper<ProjectDO>{
 		project.setFee(rs.getDouble("pfee"));
 		project.setState(rs.getInt("pstate"));
 		project.setTea(rs.getString("ptea"));
-		project.setTtel(rs.getString("ptel"));
+		project.setTtel(rs.getString("pttel"));
 		project.setSession(rs.getInt("psession"));
 		project.setUID(rs.getInt("uid"));
 		
