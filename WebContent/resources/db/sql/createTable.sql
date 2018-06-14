@@ -32,6 +32,22 @@ alter table Projects
 add constraint FK_UID
 foreign key (uid) references Users(uid);
 
-insert into PROJECTS values(1000, 15206136, '三小管理系统', '一般项目', 'm没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
-insert into PROJECTS values(1001, 15206136, '三小管理系统', '一般项目', 'm没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
+insert into PROJECTS values(1000, 15206136, '三小管理系统', '一般项目', '没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
+insert into PROJECTS values(1001, 15206136, '三小管理系统', '一般项目', '没有简介', '没有计划', '软件', 1000, 0, '蔡柯', '123123', 11);
 
+create table Members(
+	mid int primary key,
+	pid int,
+	mname varchar(20),
+	mage int,
+	msex varchar(20),
+	mps varchar(40),
+	mac varchar(40),
+);
+
+alter table Members
+add constraint FK_PID
+foreign key (pid) references Projects(pid);
+
+insert into MEMBERS values(15206139, 1000, '冯超', 22, '男', '群众', '软件');
+insert into MEMBERS values(15206137, 1000, '赵宇嘉', 22, '男', '群众', '软件');

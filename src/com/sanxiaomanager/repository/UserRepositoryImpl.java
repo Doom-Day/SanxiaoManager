@@ -72,12 +72,27 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 		return temp>0?true:false;
 	}
 
+	@Override
 	public UserDO selectById(int id) {
 		String sql = "select * from USERS where uid=?";
 		UserDO user = null;
 		
 		try {
 			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
+		}catch(DataAccessException e) {
+			user = null;
+		}
+		
+		return user;
+	}
+	
+	@Override
+	public UserDO selectById(int id, int ch) {
+		String sql = "select * from USERS where uid=? and uch=?";
+		UserDO user = null;
+		
+		try {
+			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), new Object[] {id, ch});
 		}catch(DataAccessException e) {
 			user = null;
 		}
@@ -100,7 +115,7 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 //				}; 
 //		});
 		
-		List<ProjectDO> list = (List<ProjectDO>)RepositorySingleton.getJdbcTemplate().query(sql, new Object[] {uid},
+		List<ProjectDO> list = (List<ProjectDO>)jdbcTemplate.query(sql, new Object[] {uid},
 				new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {  
 				ProjectDO project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");

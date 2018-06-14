@@ -25,6 +25,9 @@ public interface UserRepository {
 	//根据ID查找用户
 	public UserDO selectById(int id);
 	
+	//根据ID查找指定身份的用户
+	public UserDO selectById(int id, int ch);
+	
 	//根据用户ID查找项目
 	public List<ProjectDO> getMyProjects(int uid);
 	

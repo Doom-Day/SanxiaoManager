@@ -21,12 +21,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/log")
-	public ModelAndView login(String uid, String upwd) {
+	public ModelAndView login(String uid, String upwd, String uch) {
 //		System.out.println(uid + " " + upwd);
 		
 		ModelAndView mav = new ModelAndView();
 		
-		UserDO user = LoginBO.login(uid, upwd);
+		UserDO user = LoginBO.login(uid, upwd, uch);
 		
 		if(user == null) {
 			//User not exist

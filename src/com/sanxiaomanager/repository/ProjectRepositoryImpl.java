@@ -2,12 +2,16 @@ package com.sanxiaomanager.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.sanxiaomanager.ACSingleton;
+import com.sanxiaomanager.RepositorySingleton;
 
 /**
  * 152061°àµÚ*×é
@@ -81,6 +85,59 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		}
 		
 		return project;
+	}
+	
+	@Override
+	public Map<String,Object> selectProjectDetail(int id){
+		String sql = "select * from PROJECTS, USERS where pid=? and PROJECTS.uid=USERS.uid";
+		
+		Map<String,Object> map = jdbcTemplate.queryForObject(sql,
+				new RowMapper<Map<String, Object>>() {
+			public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Object> rsMap = new LinkedHashMap<String, Object>();
+					rsMap.put("pname", rs.getString("pname"));
+					rsMap.put("uname", rs.getString("uname"));
+					rsMap.put("ups", rs.getString("ups"));
+					rsMap.put("uage", rs.getInt("uage"));
+					rsMap.put("uac", rs.getString("uac"));
+					rsMap.put("uadd", rs.getString("uadd"));
+					rsMap.put("utel", rs.getString("utel"));
+					rsMap.put("ptea", rs.getString("ptea"));
+					rsMap.put("pttel", rs.getString("pttel"));
+					rsMap.put("pprofile", rs.getString("pprofile"));
+					rsMap.put("pplan", rs.getString("pplan"));
+					rsMap.put("pfee", rs.getDouble("pfee"));
+					rsMap.put("ptype", rs.getString("ptype"));
+					rsMap.put("pof", rs.getString("pof"));
+					
+				return rsMap;
+			}
+		}, id);
+		
+		return map;
+	}
+	
+	@Override
+	public List<Map<String,Object>> getMember(int id){
+		String sql = "select * from MEMBERS where pid=?";
+		
+		@SuppressWarnings("unchecked")
+		List<Map<String,Object>> list = (List<Map<String,Object>>)RepositorySingleton.getJdbcTemplate().query(sql,
+				new RowMapper() {
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Object> rsMap = new LinkedHashMap<String, Object>();
+					rsMap.put("mid", rs.getInt("mid"));
+					rsMap.put("mname", rs.getString("mname"));
+					rsMap.put("mage", rs.getInt("mage"));
+					rsMap.put("msex", rs.getString("msex"));
+					rsMap.put("mps", rs.getString("mps"));
+					rsMap.put("mac", rs.getString("mac"));
+					
+				return rsMap;
+			}
+		}, id);
+		
+		return list;
 	}
 
 	public ProjectRepositoryImpl(JdbcTemplate jdbcTemplate) {
