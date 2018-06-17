@@ -27,9 +27,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	@Override
 	public boolean insert(ProjectDO project) {
 		int temp = 0;
-		String sql = "insert into PROJECTS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into PROJECTS values(next value for seq_pid, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		temp = jdbcTemplate.update(sql, new Object[] {
-				project.getId(),
 				project.getUID(),
 				project.getName(),
 				project.getType(),

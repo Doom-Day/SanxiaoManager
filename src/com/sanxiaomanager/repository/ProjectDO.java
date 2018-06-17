@@ -59,10 +59,10 @@ public class ProjectDO {
 		this.user = (UserDO)ACSingleton.getAC().getBean("userDO");
 	}
 	
-	public ProjectDO(int id, String name, String type, String profile, String plan, String of, double fee, int state,
+	public ProjectDO(String name, String type, String profile, String plan, String of, double fee, int state,
 			String tea, String tel, int session, UserDO user) {
 		super();
-		this.id = id;
+		this.id = 0;
 		this.name = name;
 		this.type = type;
 		this.profile = profile;

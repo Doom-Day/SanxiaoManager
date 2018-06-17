@@ -51,3 +51,9 @@ foreign key (pid) references Projects(pid);
 
 insert into MEMBERS values(15206139, 1000, '冯超', 22, '男', '群众', '软件');
 insert into MEMBERS values(15206137, 1000, '赵宇嘉', 22, '男', '群众', '软件');
+
+create sequence seq_pid
+ 　 minvalue 1000
+  　maxvalue 9999
+  　start with 1000
+  　increment by 1;

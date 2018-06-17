@@ -1,18 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="com.sanxiaomanager.RepositorySingleton" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <html>
 <head>
 	<title>修改项目信息</title>
+	<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/project_detail_transfer.js"></script>
 	<link rel="stylesheet"  type="text/css"  href="resources/css/detail.css"/>
 	<link rel="stylesheet" media="screen" href="resources/css/table.css" />
 </head>
 <body>
 	<div id="text">
-		<form action="projectRevise" method="post">
 			<h1>修改</h1>
-			<p>
+"			<p>
 				<label>项目名称</label>
 				<input type="text" id="pnamesignup" name="pnamesignup" value="${project.pname}" required="required"/>
 			</p>
@@ -64,7 +66,6 @@
 					<table border="0">
 						<thead>
 				            <tr>
-				            	<th>编号</th>
 				            	<th>学号</th>
 				                <th>姓名</th>
 				                <th>年龄</th>
@@ -74,41 +75,33 @@
 				           	</tr>
 				        </thead>
 				        <tbody>
-				        	<c:forEach var="i" begin="1" end="5">
-				        		<c:choose>
-					        		<c:when test="${fn:length(member)}>=i">
-							            <tr>
-							            	<td><p>${i}</p></td>
-							                <td><p id="mid_${i}" contenteditable="true">${member.get(i-1).mid}</p></td>
-							                <td><p id="mname_${i}" contenteditable="true">${member.get(i-1).mname}</p></td>  
-							                <td><p id="mage_${i}" contenteditable="true">${member.get(i-1).mage}</p></td>
-							                <td><p id="msex_${i}" contenteditable="true">${member.get(i-1).msex}</p></td>
-							                <td><p id="mps_${i}" contenteditable="true">${member.get(i-1).mps}</p></td>
-							                <td><p id="mac_${i}" contenteditable="true">${member.get(i-1).mac}</p></td>
-							            </tr>
-						           </c:when>
-						           <c:otherwise>
-					           			<tr>
-							            	<td><p>${i}</p></td>
-							                <td><p id="mid_${i}" contenteditable="true"></p></td>
-							                <td><p id="mname_${i}" contenteditable="true"></p></td>  
-							                <td><p id="mage_${i}" contenteditable="true"></p></td>
-							                <td><p id="msex_${i}" contenteditable="true"></p></td>
-							                <td><p id="mps_${i}" contenteditable="true"></p></td>
-							                <td><p id="mac_${i}" contenteditable="true"></p></td>
-							            </tr>
-						           </c:otherwise>
-					           </c:choose>
-				        	</c:forEach>
+				        	<c:forEach var="result" items="${member}" varStatus="status">
+					            <tr>
+					                <td><p id="mid_${status.index+1}">${result.mid}</p></td>
+					                <td><p id="mname_${status.index+1}">${result.mname}</p></td>  
+					                <td><p id="mage_${status.index+1}">${result.mage}</p></td>
+					                <td><p id="msex_${status.index+1}">${result.msex}</p></td>
+					                <td><p id="mps_${status.index+1}">${result.mps}</p></td>
+					                <td><p id="mac_${status.index+1}">${result.mac}</p></td>
+					            </tr>
+							</c:forEach>
+		           			<tr>
+								<td><p id="mid_new" contenteditable="true"></p></td>
+								<td><p id="mname_new" contenteditable="true"></p></td>  
+								<td><p id="mage_new" contenteditable="true"></p></td>
+								<td><p id="msex_new" contenteditable="true"></p></td>
+								<td><p id="mps_new" contenteditable="true"></p></td>
+								<td><p id="mac_new" contenteditable="true"></p></td>
+				            </tr>
 				        </tbody>
         			</table>
 				</p>
 			</p>
 			<p class="text button">
-				<input type="submit" value="确认修改">
-				<input type="button" onclick="javascript:history.back(-1);" value="返回">
+				<input type="button" id="revise" value="确认修改">
+				<input type="button" onclick="window.location.href='/log?uid=<%=RepositorySingleton.getUser().getId()%>&upwd=<%=RepositorySingleton.getUser().getPwd()%>&uch=<%=RepositorySingleton.getUser().getCh()%>'" value="返回">
+				<input type="hidden" id="pidsignup" name="pidsignup" value="${project.pid}" />
 			</p>
-		</form>
 	</div>
 
 </body>

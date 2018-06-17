@@ -92,8 +92,10 @@ public class Main {
 //		for(ProjectDO p : list) {
 //			System.out.println(p.toString());
 //		}
-		System.out.println(RepositorySingleton.getUserRepositoryImpl().selectById(15206136).toString());
-		System.out.println(RepositorySingleton.getProjectRepositoryImpl().selectById(1000).toString());
+//		System.out.println(RepositorySingleton.getUserRepositoryImpl().selectById(15206136).toString());
+//		System.out.println(RepositorySingleton.getProjectRepositoryImpl().selectById(1000).toString());
+		
+		RepositorySingleton.getProjectRepositoryImpl().insert(new ProjectDO("三小管理系统", "一般项目", "没有简介", "没有计划", "软件", 1000, 0, "蔡柯", "123123", 11, RepositorySingleton.getUserRepositoryImpl().selectById(15206136)));
 	}
 
 }

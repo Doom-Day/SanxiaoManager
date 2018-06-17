@@ -96,15 +96,15 @@
 		<p class="text button">
 		<c:choose>
 			<c:when test="${user.ch=='0'}">
-				<input type="button" onclick='location.href=("project_revise.jsp")' value="修改">
+				<input name="pd_b" type="submit" value="修改">
 			</c:when>
 			<c:when test="${user.ch=='1'}">
 				<c:choose>
 					<c:when test="${project.pstate=='0'}">
-						<input type="submit" value="同意立项">
+						<input name="pd_b" type="submit" value="同意立项">
 					</c:when>
 					<c:when test="${project.pstate=='1'}">
-						<input type="submit" value="同意结题">
+						<input name="pd_b" type="submit" value="同意结题">
 					</c:when>
 				</c:choose>
 			</c:when>
