@@ -23,8 +23,9 @@ public class ProjectBO {
 	//修改项目信息
 	public static boolean projectRevise(int pid, String pname, String ptype,
 			String ptea, String pttel,
-			String pprofile, String pplan, double pfee) {
-		ProjectDO project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");
+			String pprofile, String pplan,
+			String pof, double pfee) {
+		ProjectDO project = RepositorySingleton.getProjectRepositoryImpl().selectById(pid);
 		project.setId(pid);
 		project.setName(pname);
 		project.setType(ptype);
@@ -32,10 +33,38 @@ public class ProjectBO {
 		project.setTtel(pttel);
 		project.setProfile(pprofile);
 		project.setPlan(pplan);
+		project.setOf(pof);
 		project.setFee(pfee);
 		if(RepositorySingleton.getProjectRepositoryImpl().selectById(pid) == null)
 			return false;
 		else
 			return RepositorySingleton.getProjectRepositoryImpl().update(project);
+	}
+	
+	//添加项目
+	public static boolean addProject(
+			int pid, int uid,
+			String pname, String ptype,
+			String pprofile, String pplan,
+			String pof, double pfee,
+			int pstate, String ptea,
+			String pttel, int psession) {
+		
+		ProjectDO project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");
+		project.setId(pid);
+		project.setUID(uid);
+		project.setName(pname);
+		project.setType(ptype);
+		project.setProfile(pprofile);
+		project.setPlan(pplan);
+		project.setOf(pof);
+		project.setFee(pfee);
+		project.setState(pstate);
+		project.setTea(ptea);
+		project.setTtel(pttel);
+		project.setSession(psession);
+		
+		RepositorySingleton.getProjectRepositoryImpl().insert(project);
+		return false;
 	}
 }

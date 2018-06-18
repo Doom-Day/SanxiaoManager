@@ -66,9 +66,12 @@
 	        </tbody>
 	    </table>
 	    <div id="addbutton">
+	    	<form action="applyProject">
 			<p class="add button">
-				<input type="button" onclick='location.href=("project_add.jsp")' value="申请三小项目">
+				<!--<input type="button" onclick='location.href=("project_add.jsp")' value="申请三小项目">-->
+				<input type="submit" value="申请三小项目">
 			</p>
+			</form>
 		</div>
 	</article>
 </body>

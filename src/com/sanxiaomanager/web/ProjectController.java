@@ -1,4 +1,4 @@
-package com.sanxiaomanager.service;
+package com.sanxiaomanager.web;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sanxiaomanager.RepositorySingleton;
+import com.sanxiaomanager.service.MemberBO;
+import com.sanxiaomanager.service.ProjectBO;
 
 @Controller
 public class ProjectController {
@@ -51,9 +53,8 @@ public class ProjectController {
 	@RequestMapping(value = "/reviseProject", method = RequestMethod.POST)
 	public String reviseProject(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("Controller running...");
 		int pid;
-		String pname, ptype, ptea, pttel, pprofile, pplan;
+		String pname, ptype, ptea, pttel, pprofile, pplan, pof;
 		double pfee; 
 		
 		int mid, mage;
@@ -66,6 +67,7 @@ public class ProjectController {
 		pttel = request.getParameter("pttel");
 		pprofile = request.getParameter("pprofile");
 		pplan = request.getParameter("pplan");
+		pof = request.getParameter("pof");
 		pfee = Double.valueOf(request.getParameter("pfee"));
 		
 		mid = "".equals(request.getParameter("mid_new"))?0:Integer.valueOf(request.getParameter("mid_new"));
@@ -81,9 +83,14 @@ public class ProjectController {
 //		mav.addObject("user", RepositorySingleton.getUser());
 //		mav.addObject("project", detail);
 //		mav.addObject("member", member);
-		ProjectBO.projectRevise(pid, pname, ptype, ptea, pttel, pprofile, pplan, pfee);
-		if(mid > 0 && mname.equals("") & mage > 0 && msex.equals("") && mps.equals("") && mac.equals(""))
+		ProjectBO.projectRevise(pid, pname, ptype, ptea, pttel, pprofile, pplan, pof, pfee);
+		if(mid > 0 && !mname.equals("") & mage > 0 && !msex.equals("") && !mps.equals("") && !mac.equals(""))
 			MemberBO.addMember(pid, mid, mname, mage, msex, mps, mac);
 		return "student";
+	}
+	
+	@RequestMapping("/applyProject")
+	public String applyProject() {
+		return "project_add";
 	}
 }

@@ -13,6 +13,7 @@
 </head>
 <body>
 	<div id="text">
+		<form action="log" method="post">
 			<h1>修改</h1>
 "			<p>
 				<label>项目名称</label>
@@ -99,9 +100,10 @@
 			</p>
 			<p class="text button">
 				<input type="button" id="revise" value="确认修改">
-				<input type="button" onclick="window.location.href='/log?uid=<%=RepositorySingleton.getUser().getId()%>&upwd=<%=RepositorySingleton.getUser().getPwd()%>&uch=<%=RepositorySingleton.getUser().getCh()%>'" value="返回">
+				<input type="submit" value="返回">
 				<input type="hidden" id="pidsignup" name="pidsignup" value="${project.pid}" />
 			</p>
+		</form>
 	</div>
 
 </body>

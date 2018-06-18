@@ -1,8 +1,4 @@
-package com.sanxiaomanager.service;
-
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Map;
+package com.sanxiaomanager.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +6,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sanxiaomanager.RepositorySingleton;
 import com.sanxiaomanager.repository.UserDO;
+import com.sanxiaomanager.service.LoginBO;
+import com.sanxiaomanager.service.RegisterBO;
 
 //@SessionAttributes(value={"user"},types={UserDO.class})
 @Controller
@@ -22,11 +20,16 @@ public class LoginController {
 	
 	@RequestMapping("/log")
 	public ModelAndView login(String uid, String upwd, String uch) {
-//		System.out.println(uid + " " + upwd);
+//		System.out.println("Log controller running...");
 		
 		ModelAndView mav = new ModelAndView();
 		
-		UserDO user = LoginBO.login(uid, upwd, uch);
+		UserDO user;
+		if(uid==null && upwd==null && RepositorySingleton.getUser()!=null) {
+			user = RepositorySingleton.getUser();
+		}else {
+			user = LoginBO.login(uid, upwd, uch);
+		}
 		
 		if(user == null) {
 			//User not exist
