@@ -24,6 +24,9 @@ public interface ProjectRepository {
 	//根据项目ID查找项目
 	public ProjectDO selectById(int id);
 	
+	//根据项目名称查找项目
+	public ProjectDO selectByName(String name);
+	
 	//根据项目ID查找项目详情
 	public Map<String,Object> selectProjectDetail(int id);
 	

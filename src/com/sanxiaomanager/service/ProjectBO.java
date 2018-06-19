@@ -43,7 +43,7 @@ public class ProjectBO {
 	
 	//Ìí¼ÓÏîÄ¿
 	public static boolean addProject(
-			int pid, int uid,
+			int uid,
 			String pname, String ptype,
 			String pprofile, String pplan,
 			String pof, double pfee,
@@ -51,7 +51,6 @@ public class ProjectBO {
 			String pttel, int psession) {
 		
 		ProjectDO project = (ProjectDO)ACSingleton.getAC().getBean("projectDO");
-		project.setId(pid);
 		project.setUID(uid);
 		project.setName(pname);
 		project.setType(ptype);
@@ -65,6 +64,7 @@ public class ProjectBO {
 		project.setSession(psession);
 		
 		RepositorySingleton.getProjectRepositoryImpl().insert(project);
+		
 		return false;
 	}
 }

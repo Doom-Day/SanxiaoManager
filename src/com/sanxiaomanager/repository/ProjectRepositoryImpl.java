@@ -87,6 +87,20 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	}
 	
 	@Override
+	public ProjectDO selectByName(String name) {
+		String sql = "select * from PROJECTS where pname=?";
+		ProjectDO project = null;
+		
+		try {
+			project = jdbcTemplate.queryForObject(sql, new ProjectRowMapper(), name);
+		}catch(DataAccessException e) {
+			project = null;
+		}
+		
+		return project;
+	}
+	
+	@Override
 	public Map<String,Object> selectProjectDetail(int id){
 		String sql = "select * from PROJECTS, USERS where pid=? and PROJECTS.uid=USERS.uid";
 		

@@ -103,7 +103,7 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProjectDO> getMyProjects(int uid){
-		String sql = "select * from PROJECTS where uid=?";
+		String sql = "select * from PROJECTS where uid=? order by pid";
 //		Map<String, Object> map = (Map<String, Object>)RepositorySingleton.getJdbcTemplate().query(sql, new Object[] {uid},
 //				new ResultSetExtractor() {
 //			public Object extractData(ResultSet rs) throws SQLException {  
@@ -140,7 +140,7 @@ public class UserRepositoryImpl extends JdbcDaoSupport implements UserRepository
 	}
 	
 	public List<Map<String,Object>> getAllProjects(){
-		String sql = "select * from USERS, PROJECTS where USERS.uid=PROJECTS.uid";
+		String sql = "select * from USERS, PROJECTS where USERS.uid=PROJECTS.uid order by pid";
 		
 		@SuppressWarnings("unchecked")
 		List<Map<String,Object>> list = (List<Map<String,Object>>)RepositorySingleton.getJdbcTemplate().query(sql,

@@ -4,12 +4,13 @@
 <html>
 <head>
 	<title>申请项目</title>
+	<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/project_add_transfer.js"></script>
 	<link rel="stylesheet"  type="text/css"  href="resources/css/detail.css"/>
 	<link rel="stylesheet" media="screen" href="resources/css/table.css" />
 </head>
 <body>
 	<div id="text">
-		<form action="projectAdd" method="post">
 			<h1>申请</h1>
 			<p>
 				<label>项目名称</label>
@@ -87,11 +88,12 @@
         			</table>
 				</p>
 			</p>
+			<form action="log">
 			<p class="text button">
-				<input type="submit" value="确认申请">
+				<input type="submit" id="add" value="确认申请">
 				<input type="button" onclick="javascript:history.back(-1);" value="返回">
 			</p>
-		</form>
+			</form>
 	</div>
 
 </body>

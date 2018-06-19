@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.sanxiaomanager.repository.MemberDO;
 import com.sanxiaomanager.repository.ProjectDO;
 import com.sanxiaomanager.repository.UserDO;
 
@@ -95,7 +96,8 @@ public class Main {
 //		System.out.println(RepositorySingleton.getUserRepositoryImpl().selectById(15206136).toString());
 //		System.out.println(RepositorySingleton.getProjectRepositoryImpl().selectById(1000).toString());
 		
-		RepositorySingleton.getProjectRepositoryImpl().insert(new ProjectDO("三小管理系统", "一般项目", "没有简介", "没有计划", "软件", 1000, 0, "蔡柯", "123123", 11, RepositorySingleton.getUserRepositoryImpl().selectById(15206136)));
+		MemberDO member = (MemberDO)ACSingleton.getAC().getBean("memberDO");
+		System.out.println(member.toString());
 	}
 
 }

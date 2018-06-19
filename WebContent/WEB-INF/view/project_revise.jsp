@@ -15,7 +15,7 @@
 	<div id="text">
 		<form action="log" method="post">
 			<h1>修改</h1>
-"			<p>
+			<p>
 				<label>项目名称</label>
 				<input type="text" id="pnamesignup" name="pnamesignup" value="${project.pname}" required="required"/>
 			</p>
