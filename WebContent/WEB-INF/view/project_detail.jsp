@@ -96,7 +96,9 @@
 		<p class="text button">
 		<c:choose>
 			<c:when test="${user.ch=='0'}">
-				<input name="pd_b" type="submit" value="修改">
+				<c:if test="${project.pstate!='2'}">
+					<input name="pd_b" type="submit" value="修改">
+				</c:if>
 			</c:when>
 			<c:when test="${user.ch=='1'}">
 				<c:choose>

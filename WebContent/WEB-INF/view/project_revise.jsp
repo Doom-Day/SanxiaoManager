@@ -29,13 +29,11 @@
 			</p>
 			<p>
 				<label>项目简介</label>
-				<p id="pprofilesignup" contenteditable="true">
-					${project.pprofile}</p>
+				<p id="pprofilesignup" contenteditable="true">${project.pprofile}</p>
 			</p>
 			<p>
 				<label>项目计划</label>
-				<p id="pplansignup" contenteditable="true">
-					${project.pplan}</p>
+				<p id="pplansignup" contenteditable="true">${project.pplan}</p>
 			</p>
 			<p>
 				<label>经费需求</label>

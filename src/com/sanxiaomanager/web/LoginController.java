@@ -33,7 +33,7 @@ public class LoginController {
 		
 		if(user == null) {
 			//User not exist
-			mav.addObject("message", "用户不存在，请注册");
+			mav.addObject("message", "账号或密码错误，请重新输入！");
 			mav.setViewName("login");
 			return mav;
 		}

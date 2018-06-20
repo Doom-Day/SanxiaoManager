@@ -1,5 +1,6 @@
 $(function(){
 	  $("#add").click(function(){
+		  re = new RegExp("<div>|</div>", "g");
 		  var jsonT="[";
 		  for(var i=1;i<6;i++){
 			  if($.trim($("#mid_"+i).html())!="")
@@ -17,8 +18,8 @@ $(function(){
             	  ptype: $("#ptype option:selected").val(),
             	  ptea: $("#pteasignup").val(),
             	  pttel: $("#pttelsignup").val(),
-            	  pprofile: $.trim($("#pprofilesignup").html()),
-            	  pplan: $.trim($("#pplansignup").html()),
+            	  pprofile: ($.trim($("#pprofilesignup").html())).replace(re, "<br>"),
+            	  pplan: ($.trim($("#pplansignup").html())).replace(re, "<br>"),
             	  pfee: $("#pfeesignup").val(),
             	  pof: $("#pof option:selected").val(),
             	  members:jsonT

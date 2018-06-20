@@ -1,5 +1,6 @@
 $(function(){
 	  $("#revise").click(function(){
+		  re = new RegExp("<div>|</div>", "g");
 		  $.ajax({
               type: 'POST',
               url: "http://localhost:8080/SanxiaoManager/reviseProject",
@@ -9,8 +10,8 @@ $(function(){
             	  ptype: $("#ptype option:selected").val(),
             	  ptea: $("#pteasignup").val(),
             	  pttel: $("#pttelsignup").val(),
-            	  pprofile: $.trim($("#pprofilesignup").html()),
-            	  pplan: $.trim($("#pplansignup").html()),
+            	  pprofile: ($.trim($("#pprofilesignup").html())).replace(re, "<br>"),
+            	  pplan: ($.trim($("#pplansignup").html())).replace(re, "<br>"),
             	  pfee: $("#pfeesignup").val(),
             	  pof: $("#pof option:selected").val(),
             	  mid_new: $.trim($("#mid_new").html()),
